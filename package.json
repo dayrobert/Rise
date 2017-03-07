@@ -19,7 +19,8 @@
   "author": "Robert Day",
   "license": "MIT",
   "dependencies": {
-      "jquery": "2.0.0"
+      "jquery": "3.*.*",
+      "bootstrap": "3.*.*"
   },
   "bugs": {
     "url": "https://github.com/dayrobert/rise/issues"

@@ -1,4 +1,37 @@
 var rise = rise || {};
+// Resize the the target value to a hard value and return it's content height.
+// Set the last argument (optional) to true to log the measurements to the JS console
+function setTargetHeight($target, wrapperHt, offset, debug) {
+	var logChanges = (debug !== undefined) && (debug === true);
+	var _containerId = "", _containerHeight = 0;
+
+	//Figure out the decoration height
+	var _marginHt = $target.outerHeight(true) - $target.outerHeight();
+	var _paddingHt = $target.innerHeight() - $target.height();
+	var _borderHt = $target.outerHeight() - $target.innerHeight();
+
+	//Figure out what the target height should be
+	var _targetHeight = Math.floor(wrapperHt - offset - _marginHt - _paddingHt - _borderHt);
+
+	//Set the outer height of the target
+	$target.height(_targetHeight);
+
+	//Log the changes if desired
+	if (logChanges) {
+		_containerId = $target.parent().attr("id");
+		if (!(window.console === undefined)) {
+			console.log(
+				  "-------------------------------------------------\n" +
+				  "Resizing Container\n" +
+				  "  Container:            " + rstrPad(_containerId + ", ", 12, " ") + "\tHeight: " + wrapperHt + "\n" +
+				  "  Target:               " + rstrPad($target.attr("id") + ", ", 12, " ") + "\tOffset: " + offset.toString() + "\tMargin: " + _marginHt + "\tBorder: " + _borderHt + "\tPadding: " + _paddingHt + "\n" +
+				  "  Result Height:        \t\tOuter: " + (_targetHeight + _marginHt + _borderHt + _paddingHt).toString() + "\tInner: " + _targetHeight + "\n\n"
+				  );
+		}
+	}
+
+	return _targetHeight;
+}
 
 rise.apply = function rise(selector, parentHeight) {
     var $this = $(selector);
@@ -32,7 +65,7 @@ rise.apply = function rise(selector, parentHeight) {
     } else if (1 === $divs.length) {
         var $onlyDiv = $($divs[0]);
         if (!$onlyDiv.hasClass('rs-fixed')) {
-            parentHeight = cdan.setTargetHeight($onlyDiv, parentHeight, 0);
+            parentHeight = setTargetHeight($onlyDiv, parentHeight, 0);
             $onlyDiv.trigger("risen");
             $onlyDiv.addClass('rs-risen rs-risen-calc');
             rise($onlyDiv, parentHeight);
@@ -51,7 +84,7 @@ rise.apply = function rise(selector, parentHeight) {
         $divs = $("> div.rs-full:visible, > form.rs-full:visible, > iframe.rs-full:visible", $this);
         for (var i = 0, len = $divs.length; i < len; ++i) {
             var $curDiv = $($divs[i]);
-            ht = cdan.setTargetHeight($curDiv, parentHeight, fixedHeight);
+            ht = setTargetHeight($curDiv, parentHeight, fixedHeight);
             $curDiv.trigger("risen");
             $curDiv.addClass('rs-risen rs-risen-calc');
             rise($curDiv, ht);
@@ -65,7 +98,7 @@ rise.apply = function rise(selector, parentHeight) {
             //	for each sizeable div set the new height and then rise its child divs
             for (var i = 0, len = $divs.length; i < len; ++i) {
                 var $curDiv = $($divs[i]);
-                ht = cdan.setTargetHeight($curDiv, growHeight, 0);
+                ht = setTargetHeight($curDiv, growHeight, 0);
                 $curDiv.trigger("risen");
                 $curDiv.addClass('rs-risen rs-risen-calc');
                 rise($curDiv, ht);
