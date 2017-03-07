@@ -26,7 +26,7 @@ rise.apply = function rise(selector, parentHeight) {
         return;
     }
 
-    var id = $this[0].id;
+    //var id = $this[0].id;
 
     // if the parent height is not passed in then we use the height of the item's parent
     if (parentHeight === undefined || undefined === parentHeight) {
@@ -44,7 +44,7 @@ rise.apply = function rise(selector, parentHeight) {
     //	none: return because there is nothing to do
     //	1: just size this div to out size and size its interal divs
     //	> 1: interate through each of the div and resize the divs to fit without the current div (this)
-    var $divs = $(" > div, > form, > iframe", $this);
+    let $divs = $(" > div, > form, > iframe", $this);
     if (0 === $divs.length) {
         return;
     } else if (1 === $divs.length) {
@@ -58,7 +58,7 @@ rise.apply = function rise(selector, parentHeight) {
     } else {
         //	Add up the combined height of all the fixed divs
         $divs = $("> div.rs-fixed:visible, >form.rs-fixed:visible, >iframe.rs-fixed:visible", $this);
-        var fixedHeight = 0;
+        let fixedHeight = 0;
         for (let i = 0, len = $divs.length; i < len; ++i) {
             $($divs[i]).addClass('rs-risen rs-risen-fixed');
             $("div:visible", $divs[i]).addClass('rs-risen rs-risen-default');
@@ -68,7 +68,7 @@ rise.apply = function rise(selector, parentHeight) {
         // set the height of any full size columns to the height of the parent - the height of the fixed divs
         $divs = $("> div.rs-full:visible, > form.rs-full:visible, > iframe.rs-full:visible", $this);
         for (let i = 0, len = $divs.length; i < len; ++i) {
-            var $curDiv = $($divs[i]);
+            let $curDiv = $($divs[i]);
             ht = setTargetHeight($curDiv, parentHeight, fixedHeight);
             $curDiv.trigger("risen");
             $curDiv.addClass('rs-risen rs-risen-calc');
@@ -93,9 +93,11 @@ rise.apply = function rise(selector, parentHeight) {
 };
 
 rise.autoSize = function (elem) {
-    window.onresize( () => {
-        let p = $(elem).parent();
-        let height = p.height();
-        rise.apply(elem, height);
-    });
+    ((elem) => {
+        $(window).bind('resize', function () {
+            let p = $(elem).parent();
+            let height = p.height();
+            rise.apply(elem, height);
+        });
+    })(elem);
 };
