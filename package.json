@@ -1,6 +1,6 @@
 {
   "name": "rise",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Javascript library for managing vertical layout of page",
   "main": "rise.js",
   "scripts": {
@@ -18,6 +18,9 @@
   ],
   "author": "Robert Day",
   "license": "MIT",
+  "dependencies": {
+      "jquery": "2.0.0"
+  },
   "bugs": {
     "url": "https://github.com/dayrobert/rise/issues"
   },
