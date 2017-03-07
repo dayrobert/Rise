@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+        <style>
+            html, body{
+                height: 100%;
+            }
+
+            .info {
+                /*color: white;*/
+                border: 1px solid white;
+            }
+
+            .info h1 {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body class='container-fluid'>
+        <div id='resize-here' style='height:100%'>
+            <div class='row' >
+                <div class='rs-full info col-sm-6' style='background-color: red;'>
+                    <h1>Full Column to the left</h1>
+                </div>
+                <div class='rs-full col-sm-6'>
+                    <div class="row">
+                        <div class='rs-fixed info' style='background-color: #00f6f0;'>
+                            <h1>Fixed Sized</h1>
+                        </div>
+                        <div class='info' style='background-color: #0000f8;'>
+                            <h1>Dynamically Sized</h1>
+                        </div>
+                        <div class='info' style='background-color: #0000ff;'>
+                            <h1>Dynamically Sized</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='row info rs-fixed' style='background-color: blue;' >
+                <h1>Bottom row... right on the bottom
+            </div>
+        </div>
+    </body>
+</html>
+
+<script src='../node_modules/jquery/dist/jquery.js'></script>
+<script src='../node_modules/bootstrap/dist/js/bootstrap.js' t></script>
+<script src="../dist/rise.js" type="text/javascript"></script>
+<script type='text/javascript'>
+    $(function () {
+        rise.apply('#resize-here');
+    });
+</script>
