@@ -12,15 +12,13 @@
   },
   "keywords": [
     "Javascript",
-    "bootstrap",
     "grid",
     "verticle"
   ],
   "author": "Robert Day",
   "license": "MIT",
   "dependencies": {
-      "jquery": "3.*.*",
-      "bootstrap": "3.*.*"
+      "jquery": ">2.x.x"
   },
   "bugs": {
     "url": "https://github.com/dayrobert/rise/issues"
