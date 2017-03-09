@@ -1,9 +1,7 @@
 /**
- * @module rise.jse
+ * @module rise-jq.js
  * 
- * https://jquery.com/
- * Released under the MIT license
- * 
+ * @license MIT License, http://www.opensource.org/licenses/MIT
  * @author robert day (day.c.robert@gmail.com)
  */
 
