@@ -1,8 +1,8 @@
 {
-  "name": "rise-js",
+  "name": "rise-jq",
   "version": "0.0.1",
-  "description": "Javascript library for managing vertical layout of page",
-  "main": "dist/rise.js",
+  "description": "jQuery extension for managing vertical layout of an HTML page",
+  "main": "dist/rise-jq.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
