@@ -1,19 +1,43 @@
+/**
+ * @module rise.jse
+ * 
+ * https://jquery.com/
+ * Released under the MIT license
+ * 
+ * @author robert day (day.c.robert@gmail.com)
+ */
 
+/**
+ * @description Rise jQuery extension.
+ * Calling on a jQuery selector causes the rise routine to be called on the element and 
+ * recursively on all child elements until all children have been processed or a blocking
+ * class is encountered.
+ * 
+ * class operators
+ * rs-fixed:    account for the height of the element and do not process children
+ * rs-break:    alter the height and do not process child elements
+ * rs-full:     set the height of the element to the parent height minus any rs-fixed elements. 
+ * @todo add additional operators to specify percentages.  rs-full will become rs-1 .. rs-12
+ * 
+ * @example $('#risehere').rise();
+ * @example $(window).bind('resize',  () => $('#resizehere').rise()); 
+ * 
+ */
 $.fn.rise = function(){
-
     (function rise(selector, parentHeight) {
         var $this = selector,
             ht = 0;
 
         // if the parent height is not passed in then we use the height of the item's parent
-        if (parentHeight === undefined ) {
-            parentHeight = $this.height();
+        if ( undefined === parentHeight ) {
+            parentHeight = $this.parent().height();
         }
 
         // check for a break indicator on the current selected DOM element
         if ($this.hasClass("rs-break") === true) {
             // mark all the divs below this has risen
             $("div:visible", $this).addClass('rs-risen rs-risen-default');
+            
             return;
         }
 
