@@ -15,7 +15,7 @@
     "grid",
     "verticle"
   ],
-  "author": "Robert Day",
+  "author": "robert.day <day.c.robert@gmail.com>",
   "license": "MIT",
   "dependencies": {
       "jquery": ">2.x.x"
