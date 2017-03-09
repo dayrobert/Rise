@@ -1,14 +1,14 @@
 {
-  "name": "rise",
+  "name": "rise-js",
   "version": "0.0.1",
   "description": "Javascript library for managing vertical layout of page",
-  "main": "rise.js",
+  "main": "dist/rise.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dayrobert/rise.git"
+    "url": "git+https://github.com/dayrobert/rise-js.git"
   },
   "keywords": [
     "Javascript",
